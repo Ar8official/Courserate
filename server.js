@@ -8,12 +8,17 @@ const session = require('express-session');
 
 const app = express();
 
+app.use(express.static('public'));
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+app.get('/', (req, res, next) => {
+	res.render('index');
+});
+
 app.listen(3000, () =>{
 	console.log('running on port 3000');
-})
+});
